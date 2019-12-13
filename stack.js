@@ -91,8 +91,22 @@ function is_palindrome(str) {
 }
 
 function matchParentheses(str) {
-  ((123123)12312(123)((123)))
-  (()()(()))
+  let tempStack = new Stack();
+  for (let i=0; i<str.length; i++) {
+    tempStack.push(str[i])
+  }
+  let countL = 0;
+  let countR = 0;
+  while(tempStack.top) {
+    let test = tempStack.pop()
+    if(test === '(') {
+      countL++
+    }
+    else if(test === ')') {
+      countR++
+    }
+  }
+  return countL !== countR ? false : true
 }
 
 class Queue {
@@ -140,7 +154,9 @@ function main() {
   stack.remove('B')
   // console.log(stack)
   // console.log(display(stack))
-  console.log(is_palindrome('stack'))
+  // console.log(is_palindrome('stack'))
+  console.log(matchParentheses('()()')) // parans match => true
+  console.log(matchParentheses('()(')) // parans dont match => false
 
 }
 
